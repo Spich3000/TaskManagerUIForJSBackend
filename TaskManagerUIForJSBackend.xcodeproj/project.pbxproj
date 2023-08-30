@@ -10,9 +10,9 @@
 		A2D411972A9FD7E200487D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411962A9FD7E200487D05 /* AppDelegate.swift */; };
 		A2D411992A9FD7E200487D05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411982A9FD7E200487D05 /* SceneDelegate.swift */; };
 		A2D4119B2A9FD7E200487D05 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4119A2A9FD7E200487D05 /* ViewController.swift */; };
-		A2D4119E2A9FD7E200487D05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D4119C2A9FD7E200487D05 /* Main.storyboard */; };
 		A2D411A02A9FD7E300487D05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D4119F2A9FD7E300487D05 /* Assets.xcassets */; };
 		A2D411A32A9FD7E300487D05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D411A12A9FD7E300487D05 /* LaunchScreen.storyboard */; };
+		A2D411AC2A9FDB3600487D05 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A2D411AB2A9FDB3600487D05 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,7 +20,6 @@
 		A2D411962A9FD7E200487D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2D411982A9FD7E200487D05 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A2D4119A2A9FD7E200487D05 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A2D4119D2A9FD7E200487D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2D4119F2A9FD7E300487D05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2D411A22A9FD7E300487D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2D411A42A9FD7E300487D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -31,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D411AC2A9FDB3600487D05 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +59,6 @@
 				A2D411962A9FD7E200487D05 /* AppDelegate.swift */,
 				A2D411982A9FD7E200487D05 /* SceneDelegate.swift */,
 				A2D4119A2A9FD7E200487D05 /* ViewController.swift */,
-				A2D4119C2A9FD7E200487D05 /* Main.storyboard */,
 				A2D4119F2A9FD7E300487D05 /* Assets.xcassets */,
 				A2D411A12A9FD7E300487D05 /* LaunchScreen.storyboard */,
 				A2D411A42A9FD7E300487D05 /* Info.plist */,
@@ -83,6 +82,9 @@
 			dependencies = (
 			);
 			name = TaskManagerUIForJSBackend;
+			packageProductDependencies = (
+				A2D411AB2A9FDB3600487D05 /* Alamofire */,
+			);
 			productName = TaskManagerUIForJSBackend;
 			productReference = A2D411932A9FD7E200487D05 /* TaskManagerUIForJSBackend.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +113,9 @@
 				Base,
 			);
 			mainGroup = A2D4118A2A9FD7E200487D05;
+			packageReferences = (
+				A2D411AA2A9FDB3600487D05 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = A2D411942A9FD7E200487D05 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +132,6 @@
 			files = (
 				A2D411A32A9FD7E300487D05 /* LaunchScreen.storyboard in Resources */,
 				A2D411A02A9FD7E300487D05 /* Assets.xcassets in Resources */,
-				A2D4119E2A9FD7E200487D05 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +151,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A2D4119C2A9FD7E200487D05 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A2D4119D2A9FD7E200487D05 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A2D411A12A9FD7E300487D05 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,9 +288,9 @@
 				INFOPLIST_FILE = TaskManagerUIForJSBackend/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,9 +316,9 @@
 				INFOPLIST_FILE = TaskManagerUIForJSBackend/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,6 +354,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A2D411AA2A9FDB3600487D05 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A2D411AB2A9FDB3600487D05 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A2D411AA2A9FDB3600487D05 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A2D4118B2A9FD7E200487D05 /* Project object */;
 }

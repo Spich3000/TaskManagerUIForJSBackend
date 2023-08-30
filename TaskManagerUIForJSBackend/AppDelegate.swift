@@ -7,6 +7,8 @@
 
 import UIKit
 
+// App states
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
