@@ -13,6 +13,15 @@
 		A2D411A02A9FD7E300487D05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D4119F2A9FD7E300487D05 /* Assets.xcassets */; };
 		A2D411A32A9FD7E300487D05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D411A12A9FD7E300487D05 /* LaunchScreen.storyboard */; };
 		A2D411AC2A9FDB3600487D05 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A2D411AB2A9FDB3600487D05 /* Alamofire */; };
+		A2D411AF2A9FDF0300487D05 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411AE2A9FDF0300487D05 /* Constants.swift */; };
+		A2D411B62A9FE0C900487D05 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411B52A9FE0C900487D05 /* NetworkErrors.swift */; };
+		A2D411B82A9FE0ED00487D05 /* Model+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411B72A9FE0ED00487D05 /* Model+Error.swift */; };
+		A2D411BB2A9FE1E500487D05 /* JSONNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411BA2A9FE1E500487D05 /* JSONNull.swift */; };
+		A2D411BD2A9FE20400487D05 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411BC2A9FE20400487D05 /* HTTPMethod.swift */; };
+		A2D411BF2A9FE23900487D05 /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411BE2A9FE23900487D05 /* NetworkRouter.swift */; };
+		A2D411C12A9FE26100487D05 /* NetworkRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411C02A9FE26100487D05 /* NetworkRouterProtocol.swift */; };
+		A2D411C32A9FE2BA00487D05 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411C22A9FE2BA00487D05 /* NetworkManager.swift */; };
+		A2D411C52A9FE58600487D05 /* UIViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411C42A9FE58600487D05 /* UIViewControllerPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +32,15 @@
 		A2D4119F2A9FD7E300487D05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2D411A22A9FD7E300487D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2D411A42A9FD7E300487D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2D411AE2A9FDF0300487D05 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A2D411B52A9FE0C900487D05 /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
+		A2D411B72A9FE0ED00487D05 /* Model+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+Error.swift"; sourceTree = "<group>"; };
+		A2D411BA2A9FE1E500487D05 /* JSONNull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNull.swift; sourceTree = "<group>"; };
+		A2D411BC2A9FE20400487D05 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		A2D411BE2A9FE23900487D05 /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
+		A2D411C02A9FE26100487D05 /* NetworkRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouterProtocol.swift; sourceTree = "<group>"; };
+		A2D411C22A9FE2BA00487D05 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A2D411C42A9FE58600487D05 /* UIViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerPreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +74,9 @@
 		A2D411952A9FD7E200487D05 /* TaskManagerUIForJSBackend */ = {
 			isa = PBXGroup;
 			children = (
+				A2D411B92A9FE1CC00487D05 /* Extensions */,
+				A2D411B02A9FE05B00487D05 /* Workers */,
+				A2D411AD2A9FDEF300487D05 /* Constants */,
 				A2D411962A9FD7E200487D05 /* AppDelegate.swift */,
 				A2D411982A9FD7E200487D05 /* SceneDelegate.swift */,
 				A2D4119A2A9FD7E200487D05 /* ViewController.swift */,
@@ -64,6 +85,68 @@
 				A2D411A42A9FD7E300487D05 /* Info.plist */,
 			);
 			path = TaskManagerUIForJSBackend;
+			sourceTree = "<group>";
+		};
+		A2D411AD2A9FDEF300487D05 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A2D411AE2A9FDF0300487D05 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		A2D411B02A9FE05B00487D05 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				A2D411B12A9FE06D00487D05 /* Networking */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		A2D411B12A9FE06D00487D05 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A2D411B42A9FE0B300487D05 /* Router */,
+				A2D411B32A9FE0AB00487D05 /* Model */,
+				A2D411B22A9FE07D00487D05 /* Errors */,
+				A2D411C22A9FE2BA00487D05 /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A2D411B22A9FE07D00487D05 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				A2D411B52A9FE0C900487D05 /* NetworkErrors.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		A2D411B32A9FE0AB00487D05 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A2D411B72A9FE0ED00487D05 /* Model+Error.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A2D411B42A9FE0B300487D05 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A2D411BE2A9FE23900487D05 /* NetworkRouter.swift */,
+				A2D411C02A9FE26100487D05 /* NetworkRouterProtocol.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A2D411B92A9FE1CC00487D05 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A2D411BA2A9FE1E500487D05 /* JSONNull.swift */,
+				A2D411BC2A9FE20400487D05 /* HTTPMethod.swift */,
+				A2D411C42A9FE58600487D05 /* UIViewControllerPreview.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,7 +227,16 @@
 			files = (
 				A2D4119B2A9FD7E200487D05 /* ViewController.swift in Sources */,
 				A2D411972A9FD7E200487D05 /* AppDelegate.swift in Sources */,
+				A2D411BB2A9FE1E500487D05 /* JSONNull.swift in Sources */,
+				A2D411B62A9FE0C900487D05 /* NetworkErrors.swift in Sources */,
+				A2D411C32A9FE2BA00487D05 /* NetworkManager.swift in Sources */,
+				A2D411BD2A9FE20400487D05 /* HTTPMethod.swift in Sources */,
 				A2D411992A9FD7E200487D05 /* SceneDelegate.swift in Sources */,
+				A2D411C52A9FE58600487D05 /* UIViewControllerPreview.swift in Sources */,
+				A2D411B82A9FE0ED00487D05 /* Model+Error.swift in Sources */,
+				A2D411AF2A9FDF0300487D05 /* Constants.swift in Sources */,
+				A2D411BF2A9FE23900487D05 /* NetworkRouter.swift in Sources */,
+				A2D411C12A9FE26100487D05 /* NetworkRouterProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
