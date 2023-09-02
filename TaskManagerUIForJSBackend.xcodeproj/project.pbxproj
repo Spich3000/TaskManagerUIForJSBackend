@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A27F9E692AA3E412004D7E1E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F9E682AA3E412004D7E1E /* DetailViewController.swift */; };
+		A27F9E6C2AA3E827004D7E1E /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A27F9E6B2AA3E827004D7E1E /* SnapKit-Dynamic */; };
 		A2D411972A9FD7E200487D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411962A9FD7E200487D05 /* AppDelegate.swift */; };
 		A2D411992A9FD7E200487D05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411982A9FD7E200487D05 /* SceneDelegate.swift */; };
 		A2D4119B2A9FD7E200487D05 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4119A2A9FD7E200487D05 /* ViewController.swift */; };
@@ -25,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A27F9E682AA3E412004D7E1E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A2D411932A9FD7E200487D05 /* TaskManagerUIForJSBackend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManagerUIForJSBackend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D411962A9FD7E200487D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2D411982A9FD7E200487D05 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D411AC2A9FDB3600487D05 /* Alamofire in Frameworks */,
+				A27F9E6C2AA3E827004D7E1E /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +84,7 @@
 				A2D411962A9FD7E200487D05 /* AppDelegate.swift */,
 				A2D411982A9FD7E200487D05 /* SceneDelegate.swift */,
 				A2D4119A2A9FD7E200487D05 /* ViewController.swift */,
+				A27F9E682AA3E412004D7E1E /* DetailViewController.swift */,
 				A2D4119F2A9FD7E300487D05 /* Assets.xcassets */,
 				A2D411A12A9FD7E300487D05 /* LaunchScreen.storyboard */,
 				A2D411A42A9FD7E300487D05 /* Info.plist */,
@@ -167,6 +172,7 @@
 			name = TaskManagerUIForJSBackend;
 			packageProductDependencies = (
 				A2D411AB2A9FDB3600487D05 /* Alamofire */,
+				A27F9E6B2AA3E827004D7E1E /* SnapKit-Dynamic */,
 			);
 			productName = TaskManagerUIForJSBackend;
 			productReference = A2D411932A9FD7E200487D05 /* TaskManagerUIForJSBackend.app */;
@@ -198,6 +204,7 @@
 			mainGroup = A2D4118A2A9FD7E200487D05;
 			packageReferences = (
 				A2D411AA2A9FDB3600487D05 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A27F9E6A2AA3E827004D7E1E /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = A2D411942A9FD7E200487D05 /* Products */;
 			projectDirPath = "";
@@ -225,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A27F9E692AA3E412004D7E1E /* DetailViewController.swift in Sources */,
 				A2D4119B2A9FD7E200487D05 /* ViewController.swift in Sources */,
 				A2D411972A9FD7E200487D05 /* AppDelegate.swift in Sources */,
 				A2D411BB2A9FE1E500487D05 /* JSONNull.swift in Sources */,
@@ -448,6 +456,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A27F9E6A2AA3E827004D7E1E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		A2D411AA2A9FDB3600487D05 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -459,6 +475,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A27F9E6B2AA3E827004D7E1E /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A27F9E6A2AA3E827004D7E1E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
 		A2D411AB2A9FDB3600487D05 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A2D411AA2A9FDB3600487D05 /* XCRemoteSwiftPackageReference "Alamofire" */;
