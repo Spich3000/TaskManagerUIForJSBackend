@@ -12,7 +12,7 @@ protocol NetworkRouterProtocol: URLRequestConvertible {
   var method: HTTPMethod {get}
   var params: [String: Any] {get}
   var url: URL {get}
-  var encoding: ParameterEncoding { get}
+  var encoding: ParameterEncoding {get}
 }
 
 extension NetworkRouter {
