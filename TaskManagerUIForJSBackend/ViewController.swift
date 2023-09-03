@@ -18,6 +18,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         title: "Add task!",
         message: nil,
         preferredStyle: .alert)
+    private lazy var loader: UIActivityIndicatorView = {
+        let loader = UIActivityIndicatorView()
+        loader.style = .large
+        loader.hidesWhenStopped = true
+        loader.color = .black
+        return loader
+    }()
+    private lazy var background: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.layer.opacity = 0.2
+        view.isHidden = true
+        return view
+    }()
     
     // Kinda onAppear??
     override func viewDidLoad() {
@@ -33,6 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .white
+        
         view.addSubview(tableView)
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellIdentifier")
@@ -44,10 +59,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         let continueAction = UIAlertAction(title: "Continue", style: .default) { [weak alertCreateTask] _ in
-            guard let textFields = alertCreateTask?.textFields else { return }
+            guard let textFields = alertCreateTask?.textFields else {
+                return
+            }
             
             if let taskText = textFields[0].text {
                 let request = NetworkRouter.createTask(name: taskText)
+                
+                self.enableLoader(on: true)
+
                 NetworkManager.request(request) { [weak self] (result: Result<TaskModel.Task, NetworkManager.Error>) in
                     switch result {
                     case .success(_):
@@ -55,6 +75,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     case .failure(let failure):
                         print(failure.errorDescription as Any)
                     }
+                    self?.enableLoader(on: false)
                 }
             }
         }
@@ -62,6 +83,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         alertCreateTask.addAction(continueAction)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loader.center = view.center
+        background.frame = view.bounds
+
+        view.addSubview(background)
+        view.addSubview(loader)
+    }
+        
     @objc func addTask() {
         print("")
         self.present(alertCreateTask, animated: true)
@@ -75,9 +105,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath)
         
         let item = dataArray[indexPath.row]
-        if (dataArray[indexPath.row].completed ?? false) {
-            cell.imageView?.image = UIImage(systemName: "checkmark.circle")
+        
+        if let completed = item.completed, completed {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
         }
+        
         cell.textLabel?.text = item.name // Customize this based on your data structure
         cell.backgroundColor = .clear
         
@@ -86,6 +120,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected row: \(indexPath.row)")
+        print(dataArray[indexPath.row].name)
         navigationController?.pushViewController(DetailViewController(task: dataArray[indexPath.row]), animated: true)
     }
     
@@ -94,7 +129,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             deleteTask(indexPath)
             dataArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            getTasks()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
@@ -106,7 +140,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             NetworkManager.request(request) { [weak self] (result: Result<TaskModel.Task, NetworkManager.Error>) in
                 switch result {
                 case .success(_):
-                    self?.tableView.reloadData()
+                    print("success deleting")
                 case .failure(let failure):
                     print(failure.errorDescription as Any)
                 }
@@ -119,13 +153,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         NetworkManager.request(request) { [weak self] (result: Result<TaskModel.Task, NetworkManager.Error>) in
             switch result {
             case .success(let success):
-                self?.dataArray = success.tasks ?? []
-                self?.tableView.reloadData() // Reload the table view once data is fetched
+                DispatchQueue.main.async {
+                    self?.dataArray = success.tasks ?? []
+                    self?.tableView.reloadData()
+                }
             case .failure(let failure):
                 print(failure.errorDescription as Any)
             }
         }
     }
+    
+    private func enableLoader(on: Bool) {
+        if on {
+            loader.startAnimating()
+            background.isHidden = false
+        } else {
+            loader.stopAnimating()
+            background.isHidden = true
+        }
+    }
+
 }
 
 /// Preview
