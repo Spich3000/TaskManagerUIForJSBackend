@@ -14,10 +14,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var dataArray: [TaskModel.TaskElement] = []
     
     private let tableView = UITableView()
+    private let refreshControl = UIRefreshControl()
+    
     private let alertCreateTask = UIAlertController(
         title: "Add task!",
         message: nil,
         preferredStyle: .alert)
+    
     private lazy var loader: UIActivityIndicatorView = {
         let loader = UIActivityIndicatorView()
         loader.style = .large
@@ -25,6 +28,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         loader.color = .black
         return loader
     }()
+    
     private lazy var background: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -33,7 +37,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return view
     }()
     
-    // Kinda onAppear??
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -41,13 +44,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         getTasks()
         
+//        refreshControl.attributedTitle = NSAttributedString(string: String())
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        
         self.title = "Task Manager"
         
         tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .white
-        
+        tableView.refreshControl = refreshControl
+
         view.addSubview(tableView)
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellIdentifier")
@@ -95,6 +102,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @objc func addTask() {
         print("")
         self.present(alertCreateTask, animated: true)
+    }
+    
+    @objc func refreshData(_ sender: UIRefreshControl) {
+        // Perform your data refresh logic here
+        getTasks()
+        // After data is refreshed, end the refreshing state
+        sender.endRefreshing()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
