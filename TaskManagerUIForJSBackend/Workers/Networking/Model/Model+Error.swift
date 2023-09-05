@@ -13,9 +13,9 @@ enum TaskModel {
     }
     
     struct TaskElement: Codable {
-        var completed: Bool?
-        var id: String?
-        var name: String?
+        var completed: Bool
+        var id: String
+        var name: String
         var v: Int?
         
         enum CodingKeys: String, CodingKey {

@@ -42,9 +42,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         
-        getTasks()
-        
-//        refreshControl.attributedTitle = NSAttributedString(string: String())
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         
         self.title = "Task Manager"
@@ -92,6 +89,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        getTasks()
+        
         loader.center = view.center
         background.frame = view.bounds
 
@@ -120,11 +120,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let item = dataArray[indexPath.row]
         
-        if let completed = item.completed, completed {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-        }
+        cell.accessoryType = item.completed ? .checkmark : .none
         
         cell.textLabel?.text = item.name // Customize this based on your data structure
         cell.backgroundColor = .clear
@@ -134,7 +130,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected row: \(indexPath.row)")
-        print(dataArray[indexPath.row].name)
         navigationController?.pushViewController(DetailViewController(task: dataArray[indexPath.row]), animated: true)
     }
     
@@ -149,15 +144,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func deleteTask(_ index: IndexPath) {
-        if let id = dataArray[index.row].id {
-            let request = NetworkRouter.deleteTask(id: id)
-            NetworkManager.request(request) { [weak self] (result: Result<TaskModel.Task, NetworkManager.Error>) in
-                switch result {
-                case .success(_):
-                    print("success deleting")
-                case .failure(let failure):
-                    print(failure.errorDescription as Any)
-                }
+        let id = dataArray[index.row].id
+        let request = NetworkRouter.deleteTask(id: id)
+        NetworkManager.request(request) { (result: Result<TaskModel.Task, NetworkManager.Error>) in
+            switch result {
+            case .success(_):
+                print("success deleting")
+            case .failure(let failure):
+                print(failure.errorDescription as Any)
             }
         }
     }

@@ -11,7 +11,9 @@ import SnapKit
 
 class DetailViewController: UIViewController {
     
-    let task: TaskModel.TaskElement
+    private var task: TaskModel.TaskElement
+    private var oldName: String = ""
+    private var oldComplete: Bool = false
     
     init(task: TaskModel.TaskElement) {
         self.task = task
@@ -44,14 +46,32 @@ class DetailViewController: UIViewController {
     
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 16
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
+    private lazy var loader: UIActivityIndicatorView = {
+        let loader = UIActivityIndicatorView()
+        loader.style = .large
+        loader.hidesWhenStopped = true
+        loader.color = .black
+        return loader
+    }()
+    
+    private lazy var background: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.layer.opacity = 0.2
+        view.isHidden = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        oldName = task.name
+        oldComplete = task.completed
         
         configure()
     }
@@ -73,15 +93,87 @@ class DetailViewController: UIViewController {
         view.addSubview(completedLabel)
         view.addSubview(toggle)
         view.addSubview(button)
+        
+        view.addSubview(background)
+        view.addSubview(loader)
+        
         layoutSnapKit()
     }
     
     private func configure() {
         textField.text = task.name
-        taskId.text = "Task id: \(task.id ?? String())"
-        toggle.isOn = task.completed ?? false
+        taskId.text = "Task id: \(task.id)"
+        toggle.isOn = task.completed
+        toggle.addTarget(self, action: #selector(editTaskState), for: .valueChanged )
+        
         completedLabel.text = "Completed:"
-        button.setTitle("Edit", for: .normal)
+        
+        button.setTitle("Save", for: .normal)
+        button.addTarget(self, action: #selector(sendUpdateRequest), for: .touchUpInside)
+        changeButtonState(false)
+        
+        textField.addTarget(self, action: #selector(editTaskName), for: .editingChanged)
+    }
+    
+    @objc private func editTaskName() {
+        task.name = textField.text ?? String()
+        if oldName == task.name, oldComplete == task.completed {
+            changeButtonState(false)
+        } else {
+            changeButtonState(true)
+        }
+    }
+    
+    @objc private func editTaskState() {
+        task.completed = toggle.isOn
+        if oldName == task.name, oldComplete == task.completed {
+            changeButtonState(false)
+        } else {
+            changeButtonState(true)
+        }
+    }
+    
+    @objc private func sendUpdateRequest() {
+        updateTask()
+    }
+    
+    func updateTask() {
+        let request = NetworkRouter.updateTask(task: task)
+        
+        self.enableLoader(on: true)
+        
+        NetworkManager.request(request) { [weak self] (result: Result<TaskModel.Task, NetworkManager.Error>) in
+            switch result {
+            case .success:
+                print("success updating")
+            case .failure(let failure):
+                print(failure.errorDescription as Any)
+            }
+            self?.enableLoader(on: false)
+            self?.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func enableLoader(on: Bool) {
+        if on {
+            loader.startAnimating()
+            background.isHidden = false
+        } else {
+            loader.stopAnimating()
+            background.isHidden = true
+        }
+    }
+    
+    private func changeButtonState(_ value: Bool) {
+        if value {
+            button.isUserInteractionEnabled = true
+            button.layer.opacity = 1
+            button.backgroundColor = .systemBlue
+        } else {
+            button.isUserInteractionEnabled = false
+            button.layer.opacity = 0.4
+            button.backgroundColor = .gray
+        }
     }
     
 }
@@ -101,6 +193,9 @@ private extension DetailViewController {
       }
     
     private func layoutSnapKit() {
+        loader.center = view.center
+        background.frame = view.bounds
+        
         textField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()

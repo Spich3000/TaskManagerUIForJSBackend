@@ -12,6 +12,7 @@ enum NetworkRouter {
     case getTasks
     case createTask(name: String)
     case deleteTask(id: String)
+    case updateTask(task: TaskModel.TaskElement)
 }
 
 extension NetworkRouter: NetworkRouterProtocol {
@@ -20,6 +21,9 @@ extension NetworkRouter: NetworkRouterProtocol {
         switch self {
         case let .createTask(name):
             params["name"] = name
+        case let .updateTask(task):
+            params["name"] = task.name
+            params["completed"] = task.completed
         default:
             break
         }
@@ -34,6 +38,8 @@ extension NetworkRouter: NetworkRouterProtocol {
             endPoint = Constants.Endpoints.tasks
         case let .deleteTask(id):
             endPoint = Constants.Endpoints.tasks + "/\(id)"
+        case let .updateTask(task):
+            endPoint = Constants.Endpoints.tasks + "/\(task.id)"
         }
         let url = URL(string: Constants.host)!.appendingPathComponent(endPoint)
         return url
@@ -45,6 +51,8 @@ extension NetworkRouter: NetworkRouterProtocol {
             return .get
         case .createTask:
             return .post
+        case .updateTask:
+            return .patch
         case .deleteTask:
             return .delete
         }
