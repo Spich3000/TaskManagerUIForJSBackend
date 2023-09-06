@@ -69,10 +69,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         oldName = task.name
         oldComplete = task.completed
-        
         configure()
     }
     
@@ -100,6 +98,8 @@ class DetailViewController: UIViewController {
     }
     
     private func configure() {
+        view.backgroundColor = .secondarySystemBackground
+        
         textField.text = task.name
         taskId.text = "Task id: \(task.id)"
         toggle.isOn = task.completed
@@ -148,8 +148,13 @@ class DetailViewController: UIViewController {
             case .failure(let failure):
                 print(failure.errorDescription as Any)
             }
-            self?.enableLoader(on: false)
-            self?.navigationController?.popViewController(animated: true)
+
+            if let rootVC = self?.navigationController?.viewControllers.first as? HomeViewController {
+                rootVC.viewModel.getTasks() {
+                    self?.enableLoader(on: false)
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
+            }
         }
     }
     
