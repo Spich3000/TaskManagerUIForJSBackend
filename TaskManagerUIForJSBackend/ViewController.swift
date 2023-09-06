@@ -40,7 +40,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .white
         
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         
@@ -49,7 +48,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .white
         tableView.refreshControl = refreshControl
 
         view.addSubview(tableView)

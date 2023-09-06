@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A27F9E692AA3E412004D7E1E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F9E682AA3E412004D7E1E /* DetailViewController.swift */; };
 		A27F9E6C2AA3E827004D7E1E /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A27F9E6B2AA3E827004D7E1E /* SnapKit-Dynamic */; };
+		A27F9E742AA7F6E2004D7E1E /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = A27F9E6B2AA3E827004D7E1E /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A2D411972A9FD7E200487D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411962A9FD7E200487D05 /* AppDelegate.swift */; };
 		A2D411992A9FD7E200487D05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411982A9FD7E200487D05 /* SceneDelegate.swift */; };
 		A2D4119B2A9FD7E200487D05 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4119A2A9FD7E200487D05 /* ViewController.swift */; };
@@ -25,6 +26,20 @@
 		A2D411C32A9FE2BA00487D05 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411C22A9FE2BA00487D05 /* NetworkManager.swift */; };
 		A2D411C52A9FE58600487D05 /* UIViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D411C42A9FE58600487D05 /* UIViewControllerPreview.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A27F9E752AA7F6E2004D7E1E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A27F9E742AA7F6E2004D7E1E /* SnapKit-Dynamic in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A27F9E682AA3E412004D7E1E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -59,11 +74,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A27F9E712AA7F6DB004D7E1E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A2D4118A2A9FD7E200487D05 = {
 			isa = PBXGroup;
 			children = (
 				A2D411952A9FD7E200487D05 /* TaskManagerUIForJSBackend */,
 				A2D411942A9FD7E200487D05 /* Products */,
+				A27F9E712AA7F6DB004D7E1E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,6 +187,7 @@
 				A2D4118F2A9FD7E200487D05 /* Sources */,
 				A2D411902A9FD7E200487D05 /* Frameworks */,
 				A2D411912A9FD7E200487D05 /* Resources */,
+				A27F9E752AA7F6E2004D7E1E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

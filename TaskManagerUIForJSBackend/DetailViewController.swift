@@ -82,7 +82,6 @@ class DetailViewController: UIViewController {
     }
     
     private func setUp() {
-        view.backgroundColor = .white
         self.title = "Edit task"
         layout()
     }
