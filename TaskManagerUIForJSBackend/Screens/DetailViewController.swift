@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 import SnapKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITextFieldDelegate {
     
     private var task: TaskModel.TaskElement
     private var oldName: String = ""
@@ -101,7 +101,11 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .secondarySystemBackground
         
         textField.text = task.name
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(editTaskName), for: .editingChanged)
+
         taskId.text = "Task id: \(task.id)"
+        
         toggle.isOn = task.completed
         toggle.addTarget(self, action: #selector(editTaskState), for: .valueChanged )
         
@@ -110,8 +114,6 @@ class DetailViewController: UIViewController {
         button.setTitle("Save", for: .normal)
         button.addTarget(self, action: #selector(sendUpdateRequest), for: .touchUpInside)
         changeButtonState(false)
-        
-        textField.addTarget(self, action: #selector(editTaskName), for: .editingChanged)
     }
     
     @objc private func editTaskName() {
@@ -178,6 +180,11 @@ class DetailViewController: UIViewController {
             button.layer.opacity = 0.4
             button.backgroundColor = .gray
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }
